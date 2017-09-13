@@ -9,35 +9,41 @@ require_relative '../models/address_book'
  
    def main_menu
      # #2
-     puts "Main Menu - #{address_book.entries.count} entries"
-     puts "1 - View all entries"
-     puts "2 - Create an entry"
-     puts "3 - Search for an entry"
-     puts "4 - Import entries from a CSV"
-     puts "5 - Exit"
-     print "Enter your selection: "
+    puts "Main Menu - #{address_book.entries.count} entries"
+    puts "1 - View all entries"
+    puts "2 - Create an entry"
+    puts "3 - Search for an entry"
+    puts "4 - Import entries from a CSV"
+		puts "5 - View Entry Number n"
+    puts "6 - Exit"
+    print "Enter your selection: "
  
      # #3
      selection = gets.to_i
         # #7
      case selection
-       when 1
-         system "clear"
-         view_all_entries
-         main_menu
-       when 2
-         system "clear"
-         create_entry
-         main_menu
-       when 3
-         system "clear"
-         search_entries
-         main_menu
-       when 4
-         system "clear"
-         read_csv
-         main_menu
-       when 5
+     when 1
+       system "clear"
+       view_all_entries
+       main_menu
+     when 2
+       system "clear"
+       create_entry
+       main_menu
+     when 3
+       system "clear"
+       search_entries
+       main_menu
+     when 4
+       system "clear"
+       read_csv
+       main_menu
+	when 5
+		system "clear"
+		find_entry_n
+		main_menu
+				
+      when 6
          puts "Good-bye!"
    
          exit(0)
@@ -48,6 +54,32 @@ require_relative '../models/address_book'
          main_menu
      end
    end
+
+	def find_entry_n 
+
+		print "Please enter entry number \n"
+		print "or enter 0 to exit to main menu\n"
+		print "\nEntry Number:"
+		user_selection = gets.chomp.to_i
+
+		if user_selection == 0
+			system "clear"
+			main_menu
+		end
+		if user_selection < @address_book.entries.count
+			puts @address_book.entries[user_selection]
+			puts "Press enter to return to the main menu"
+			gets.chomp
+			system "clear"
+		else
+			puts "#{user_selection} is not a valid input!"
+			find_entry_n
+		end
+
+	end	
+
+
+		
  
 
    def view_all_entries
