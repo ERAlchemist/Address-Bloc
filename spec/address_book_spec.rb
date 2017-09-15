@@ -62,7 +62,18 @@ let(:book) { AddressBook.new }
 		end
 
 	end
-
+	describe "#demolish" do
+		it "it removes all entries from the address book" do
+			book = AddressBook.new
+			book.add_entry('Bobby Joe', '919.654.2333', 'BigBobby66@aol.com')
+			book.add_entry('Betty Jane', '914.954.2149', 'bettyforgetty@geocities.com')
+			book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
+			
+			expect(book.entries.size).to eq(3)
+			book.demolish
+			expect(book.entries.size).to eq(0)
+		end
+	end
 
    # Test that AddressBook's .import_from_csv() method is working as expected
    describe "#import_from_csv" do

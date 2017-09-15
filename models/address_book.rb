@@ -35,7 +35,11 @@ class AddressBook
 			end
 		@entries.delete(entry_to_delete)
 		end
-  	end
+		end
+		
+	  def demolish
+			@entries = []
+		end
 	
 	
    def import_from_csv(file_name)
